@@ -1,9 +1,9 @@
-import Home from "./pages/Home";
+import Forms from "./pages/Forms";
 
 function App() {
   return (
     <>
-      <Home />
+      <Forms />
     </>
   );
 }
