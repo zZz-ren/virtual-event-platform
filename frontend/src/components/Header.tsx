@@ -1,19 +1,17 @@
 import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { IoClose, IoSettingsSharp } from "react-icons/io5";
+import { IoClose } from "react-icons/io5";
 import { motion } from "framer-motion";
 import ThemeToggler from "./ThemeToggler";
-import {
-  MdOutlineKeyboardArrowDown,
-  MdOutlineKeyboardArrowUp,
-} from "react-icons/md";
-import { GoSponsorTiers } from "react-icons/go";
-import { FaUserAstronaut } from "react-icons/fa";
+
+import { useNavigate } from "react-router";
 
 const Header = () => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const goToLoginPage = () => {
+    navigate("/login");
+  };
   return (
     <div className="header min-h-16 fixed w-screen py-2 grid grid-cols-12 bg-transparent">
       <div className="justify-between flex col-span-12 items-center px-3 py-1 md:col-span-4">
@@ -48,15 +46,10 @@ const Header = () => {
         {/* toggle Theme */}
         <ThemeToggler />
         <button
-          onClick={() => setIsModalOpen((t) => !t)}
+          onClick={goToLoginPage}
           className="mx-2 px-4 rounded-3xl bg-gunmetal flex items-center text-lg dark:bg-ocean text-white "
         >
           Login
-          {isModalOpen ? (
-            <MdOutlineKeyboardArrowDown />
-          ) : (
-            <MdOutlineKeyboardArrowUp />
-          )}
         </button>
       </div>
       {/* only visible in smaller screens */}
@@ -75,60 +68,14 @@ const Header = () => {
             Services
           </li>
           <li
-            onClick={() => setIsModalOpen((t) => !t)}
+            onClick={goToLoginPage}
             className="cursor-pointer px-3 py-2 flex items-center rounded-lg mx-2  "
           >
             Login
-            {!isModalOpen ? (
-              <MdOutlineKeyboardArrowDown />
-            ) : (
-              <MdOutlineKeyboardArrowUp />
-            )}
           </li>
         </motion.ul>
-        {isModalOpen && <LoginComponent />}
       </div>
     </div>
-  );
-};
-
-const LoginComponent = () => {
-  return (
-    <ul className="md:absolute block text-black md:right-2 top-52 md:top-20 bg-antiflash rounded-2xl w-fit h-fit">
-      <li className="px-8 py-3 mx-3 my-1 flex gap-2 items-center hover:bg-[#cccccc] rounded-2xl">
-        <span className="text-3xl">
-          <IoSettingsSharp />
-        </span>
-        <div className="flex flex-col">
-          <span className="text-lg font-medium">Admin Portal</span>
-          <span className="text-sm text-[#2a1a1a]">
-            Sub text this is sub text this is
-          </span>
-        </div>
-      </li>
-      <li className="px-8 py-3 mx-3 my-1 flex gap-2 items-center hover:bg-[#cccccc] rounded-2xl">
-        <span className="text-3xl">
-          <GoSponsorTiers />
-        </span>
-        <div className="flex flex-col">
-          <span className="text-lg font-medium">Sponsonship</span>
-          <span className="text-sm text-[#2a1a1a]">
-            Sub text this Sub text this is sub text this isis
-          </span>
-        </div>
-      </li>
-      <li className="px-8 py-3 mx-3 my-1 flex gap-2 items-center hover:bg-[#cccccc] rounded-2xl">
-        <span className="text-3xl">
-          <FaUserAstronaut />
-        </span>
-        <div className="flex flex-col">
-          <span className="text-lg font-medium"> Attendee</span>
-          <span className="text-sm text-[#2a1a1a]">
-            SubSu bSubSub text this is
-          </span>
-        </div>
-      </li>
-    </ul>
   );
 };
 

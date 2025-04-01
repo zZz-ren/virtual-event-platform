@@ -1,7 +1,7 @@
-import SponsorForm from "../components/Forms/SponsorForm";
+import { ReactNode } from "react";
 import ThemeToggler from "../components/ThemeToggler";
 
-const Forms = () => {
+const Forms = ({children}:{children:ReactNode}) => {
   return (
     <div className="min-h-screen md:h-screen px-5 pt-24 dark:bg-[#494559] dark:text-white bg-antiflash pb-10 md:px-36 md:pt-12 flex justify-center items-center">
       <ThemeToggler />
@@ -14,7 +14,7 @@ const Forms = () => {
           />
         </div>
         <div className="col-span-12 md:col-span-6 py-12 px-16">
-          <SponsorForm />
+         {children}
         </div>
       </div>
     </div>
